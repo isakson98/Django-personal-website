@@ -1,0 +1,15 @@
+
+
+white backgraound in the center -> maybe some image on edges
+
+black body, blue titles, pay attention to the font
+
+add -> contact me with toast!
+
+add -> images to projects
+
+search for django's powerful features
+
+find some nice, SLOW(!) grapics for front page to accompany introduction
+
+techonologies used as tags on the side 

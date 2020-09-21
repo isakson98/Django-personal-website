@@ -1,0 +1,136 @@
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/materialize.css' %}" > 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- to enable icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+</head>
+
+
+
+<style>
+.bottomright {
+    bottom: 40px;
+    right: 40px;
+}
+
+.parallax-container {
+    height: 250;
+}
+
+.container {
+    width: 55%
+}
+
+/* having two equal column tables */
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+/* having two equal column tables */
+td {
+  width: 25% ;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+</style>
+
+<body>
+
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <script> M.toast({html: "{{message}}", displayLength:4000}) </script>
+          {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <!-- deleting anything specifc to the main page and using block -->
+    {% block content %}
+    {% endblock %}
+
+    <div  class="fixed-action-btn bottomright">
+        <a href="#contact" class="btn-floating btn-large orange darken-2 waves-effect waves-light">
+          <i class="large material-icons">email</i>
+        </a>
+    </div>
+
+</body>
+
+ <footer class="page-footer grey darken-1">
+    <div class="container">
+      <h5 class="white-text center-align">Connect</h5>
+      <table >
+        <tr>
+          {% for one in connect %}
+            <td>
+              <div class="row center-align">
+                <a class="grey-text text-lighten-4" href="{{one.my_url}}" target="_blank"> {{one.social_network}} </a>
+              </div>
+            </td>
+          {% endfor %}
+        </tr>
+      </table>
+      
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container center-align">&copy; 2020 </div>
+    </div> 
+</footer>
+
+
+<!-- java script -->
+<!-- go to ctrl+shift+i -> console to see any errors -->
+<!-- to enable javascript code to run -->
+   
+
+<script src="static/js/stars.js"></script>
+<script> M.AutoInit(); </script>
+
+<script type="text/javascript">
+    var pushpinBasic = document.getElementById("pushpinBasic");
+    var pushpinBasicOptions = {
+        top: 130,
+        bottom: 100000,
+        offset: 130
+    }
+    var instancePushPinBasic = M.Pushpin.init(pushpinBasic, pushpinBasicOptions)
+</script>
+
+<script>
+  $(function(){
+      $('.stars').stars();
+  });
+</script>
+
+<script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+</script>
+
+
+

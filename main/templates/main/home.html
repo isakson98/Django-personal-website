@@ -1,0 +1,258 @@
+<!-- extending the header html file in the main directory -->
+<!-- django looks for folders named after apps, so "main" and which html file? "header.html" -->
+
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div >
+
+    <h1 class="center-align">Egor Isakson </h1>
+
+    <section class="container section">
+        <!-- introduction  -->
+        <div id="profile" class="row scrollspy">
+            <h2>Profile</h2>
+            {% for singleton in intro %}
+            <div class="box valign-wrapper">
+                <div class="col s12 l6 pull-l1  ">
+                    <p><h6>{{singleton.intro_content}}</h6></p>
+                    <br>
+                    <p><h6>{{singleton.second_intro_content}}</h6></p>
+                </div>
+                
+                <div class="col s12 l4 pull-l1">
+                    <img style="border-radius: 50%" src="{% static 'img/portrait1.jpg' %}" alt="avatar" class="responsive-img" >
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+    <div class="parallax-container"> 
+        <div  class="parallax">
+            <img src="{% static 'img/space.jpg' %}" alt="" class="responsive-img">
+        </div>
+    </div>
+        
+
+    <section class="container section">
+        <div id="education" class="section scrollspy"> 
+            <h2>Education</h2>
+            <table>
+                <tbody>
+                    {% for ed in education %}
+                        <tr>
+                            <td> 
+                                <h6> <strong>  {{ed.name_of_place}} </strong> </h6>  
+                                {{ed.dates_of_place}}
+                            </td>
+
+                            <td>
+                                <strong> {{ed.level_of_ed}} </strong>
+                                <br>
+                                {{ed.grade_received}}
+                                <br>
+                                <i class="small material-icons">location_on</i> {{ed.location_of_place }}
+                            </td>
+                        </tr>   
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="container section">
+        <div id="abilities" class="section scrollspy"> 
+            <h2>Abilities</h2>
+            <h3>Skills</h3>
+            
+            
+
+            <table>
+                <tr>
+                    <td>
+                        <table class="highlight">
+                            {% for one in skill %}
+                                {% if forloop.counter0|divisibleby:2 %}
+                                    <tr>
+                                        <td>
+                                            <span> {{one.skill_name}} </span>
+                                            <span style="float: right;" class="stars" data-rating="{{one.skill_rating}}" data-num-stars="5" ></span> 
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+
+
+                    <td>
+                        <table class="highlight">
+                            {% for one in skill %}
+                                {% if forloop.counter|divisibleby:2 %}
+                                    <tr>
+                                        <td>
+                                            <span> {{one.skill_name}} </span>
+                                            <span style="float: right;" class="stars" data-rating="{{one.skill_rating}}" data-num-stars="5" ></span> 
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            
+            <h3>Tools</h3>
+
+            <table>
+                <tr>
+                    <td>
+                        <table class="highlight">
+                            {% for one in tool %}
+                                {% if forloop.counter0|divisibleby:2 %}
+                                    <tr>
+                                        <td>
+                                            <span> {{one.tool_name}} </span>
+                                            <span style="float: right;" class="stars" data-rating="{{one.tool_rating}}" data-num-stars="5" ></span> 
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+
+
+                    <td>
+                        <table class="highlight">
+                            {% for one in tool %}
+                                {% if forloop.counter|divisibleby:2 %}
+                                    <tr>
+                                        <td>
+                                            <span> {{one.tool_name}} </span>
+                                            <span style="float: right;" class="stars" data-rating="{{one.tool_rating}}" data-num-stars="5" ></span> 
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>Languages</h3>
+
+            <table>
+                <tr>
+                    <td>
+                        <table class="highlight">
+                            {% for one in language %}
+                                {% if forloop.counter0|divisibleby:2 %}
+                                    <tr>
+                                        <td>
+                                            <span> {{one.language_name}} </span>
+                                            <span style="float: right;" class="stars" data-rating="{{one.language_rating}}" data-num-stars="5" ></span> 
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+
+
+                    <td>
+                        <table class="highlight">
+                            {% for one in language %}
+                                {% if forloop.counter|divisibleby:2 %}
+                                    <tr>
+                                        <td>
+                                            <span> {{one.language_name}} </span>
+                                            <span style="float: right;" class="stars" data-rating="{{one.language_rating}}" data-num-stars="5" ></span> 
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            
+        </div>
+    </section>
+        
+    <section class="container section">    
+        <div id="projects" class="section scrollspy">
+            <h2>Projects</h2>
+            
+            <div class="row">
+                {% for pro in projects %}
+                <div class="col s12 m12 l6">
+                    <div style="color:black;" class="card large white hoverable">
+                        <!-- adding an image to a card -->
+                        <div class="card-image">
+                            <!-- using  djnago string concotentaion inside template tag-->
+                            {% with "img/"|add:pro.project_title|add:".jpg" as static_path %}
+                            <img src="{% static static_path %}" alt="">  
+                            {% endwith %}
+                        </div>
+
+                        <div class="card-content black-text">
+                            <span class="card-title">{{pro.project_title}}</span>
+                            <p>{{pro.project_summary|safe}}.</p>
+                            <br>
+                            <p style="font-size:85%">{{pro.project_technologies}}</p>
+                        </div>
+
+                        <div class="card-action">
+                            <a href={{pro.project_git_url}} target="_blank">See source code</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="container section">
+        <div id="contact" class="section scrollspy"> 
+            
+            <div class="row">
+                <div class="col s12 l5">
+                  <h2>Get in Touch</h2>
+                </div>
+                <div class="col s12 l5 offset-l2">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="form-actions">
+                        <button type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
+              </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- left:1250px; -->
+<!-- right:100px;  -->
+<!-- class="column middle" -->
+<div style="position:relative; left:84%; " id="pushpinBasic" class="col hide-on-med-and-down m3 m l2">
+    <ul style="font-size:30px;" class="section table-of-contents">
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#abilities">Abilities</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+
+{% endblock%}
